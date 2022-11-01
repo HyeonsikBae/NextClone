@@ -4,14 +4,14 @@ type userStore = {
   name: string;
   phone: string;
   mail: string;
-  description: string;
+  instagram: string;
 };
 
 const initialState = {
   name: "Hyeonsik",
   phone: "010-2644-0432",
   mail: "baehyeonsik@gmail.com",
-  description: ":)",
+  instagram: ":)",
 } as userStore;
 
 const userSlice = createSlice({

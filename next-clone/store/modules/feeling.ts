@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type feelingStore = {
-  selectedItem: number;
+  selectedItem: string;
 };
 
 const initialState = {
-  selectedItem: 0,
+  selectedItem: "1",
 } as feelingStore;
 
 const feelingSlice = createSlice({
   name: "feeling",
   initialState,
   reducers: {
-    setFeeling: (state, action: PayloadAction<number>) => {
+    setFeeling: (state, action: PayloadAction<string>) => {
       state.selectedItem = action.payload;
     },
     initFeelint: (state, action: PayloadAction<feelingStore>) => {

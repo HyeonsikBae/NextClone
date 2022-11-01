@@ -20,8 +20,8 @@ const Background = () => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
+    setWidth(screen.width);
+    setHeight(screen.height);
     console.log(width, height);
   }, []);
 

@@ -24,32 +24,19 @@ const Selector = (props: SelectorProps) => {
   const { name, width, height, select_menus } = props;
   const [value, setValue] = useState(select_menus[0]);
   const dispatch = useAppDispatch();
-  const feelingState = useAppSelector((state) => state.feeling);
 
   const feeling = useAppSelector((state) => state.feeling.selectedItem);
-  console.log(feelingState);
-
-  const setSelect = (itemIdx: number) => {
-    dispatch(setFeeling(itemIdx));
-    console.log(feeling);
-  };
 
   const selectChange = (e) => {
     const temp_value = e.target.value;
     setValue(temp_value);
-    console.log()
+    dispatch(setFeeling(temp_value));
   };
 
   const renderSelectMenus = (): JSX.Element[] => {
     return select_menus.map((item, i) => {
       return (
-        <option
-          value={item}
-          key={i}
-          onClick={() => {
-            setSelect(i);
-          }}
-        >
+        <option value={item} key={i}>
           {item}
         </option>
       );
@@ -60,7 +47,7 @@ const Selector = (props: SelectorProps) => {
     <fieldset>
       <legend>{name}</legend>
       <SelectorWrapper width={width} height={height}>
-        <select name={name} onChange={(e) => selectChange(e)}>
+        <select value={value} name={name} onChange={(e) => selectChange(e)}>
           {renderSelectMenus()}
         </select>
       </SelectorWrapper>

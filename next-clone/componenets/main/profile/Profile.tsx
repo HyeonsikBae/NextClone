@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useAppSelector } from "../../../store/hooks";
+import Column from "../../utils/Column";
 import Selector from "../../utils/Selector";
 import ProfileInfo from "./ProfileInfo";
 import ProfilePicture from "./ProfilePicture";
@@ -20,22 +22,19 @@ const ProfileWrapper = styled.section`
 `;
 
 const Profile = () => {
-  const userInfo = {
-    name: "Hyeonsik",
-    phone: "010-0000-0000",
-    mail: "baehyeonsik@gmail.com",
-    instagram: "none",
-  };
+  const userInfo = useAppSelector((state) => state.user);
   return (
     <ProfileWrapper>
       <ProfilePicture></ProfilePicture>
-      <ProfileInfo userInfo={userInfo}></ProfileInfo>
-      <Selector
-        name="feeling"
-        width={200}
-        height={100}
-        select_menus={["1", "2", "3"]}
-      ></Selector>
+      <Column>
+        <ProfileInfo userInfo={userInfo}></ProfileInfo>
+        <Selector
+          name="feeling"
+          width={200}
+          height={100}
+          select_menus={["1", "2", "3"]}
+        ></Selector>
+      </Column>
     </ProfileWrapper>
   );
 };
