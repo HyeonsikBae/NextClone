@@ -1,0 +1,10 @@
+export const skyblue = "#55b2d5";
+export const yellow = "#ffc903";
+export const pink = "#ed3f61";
+export const red = "#fe0200";
+export const darkgrey = "#666666";
+export const grey = "#999999";
+export const skygrey = "#d7dee2";
+export const lightergrey = "#dddddd";
+export const lightgrey = "#d9d9d9";
+export const boardgrey = "#eeeeee";
