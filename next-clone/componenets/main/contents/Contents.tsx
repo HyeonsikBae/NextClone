@@ -29,13 +29,12 @@ const ContentsMainWrapper = styled.section`
 `;
 
 const Contents = () => {
-  const pages = ["home", "game", "diary"];
+  const pages: string[] = ["home", "game", "diary"];
   const [page, setPage] = useState(pages[0]);
-
   return (
     <ContentsWrapper>
       <ContentsMainWrapper>Contents</ContentsMainWrapper>
-      <Toggle buttons={pages} propFunc={setPage}></Toggle>
+      <Toggle buttons={pages} selected={page} propFunc={setPage}></Toggle>
     </ContentsWrapper>
   );
 };

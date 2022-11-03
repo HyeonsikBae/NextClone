@@ -1,13 +1,17 @@
+import { produceWithPatches } from "immer";
 import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
+import { skyblue } from "../../theme/theme";
 
 type ToggleProps = {
   buttons: string[];
+  selected: string;
   propFunc: Dispatch<SetStateAction<string>>;
 };
 
 type ToggleButtonProps = {
   name: string;
+  selected: boolean;
   propFunc: Dispatch<SetStateAction<string>>;
 };
 
@@ -26,7 +30,7 @@ const ToggleWrapper = styled.div`
   }
 `;
 
-const ToggleButtonComponent = styled.button`
+const ToggleButtonComponent = styled.button<{ selected: boolean }>`
   width: 3.5rem;
   height: 2.2rem;
   margin: 0 0 0.3rem 0;
@@ -35,6 +39,8 @@ const ToggleButtonComponent = styled.button`
   :hover {
     cursor: pointer;
   }
+  background-color: ${(props) => (props.selected ? `white` : skyblue)};
+  color: ${(props) => (props.selected ? `black` : `white`)};
   @media screen and (max-width: 960px) {
     border-radius: 0.3rem 0.3rem 0 0;
     margin: 0 0.3rem 0 0;
@@ -42,20 +48,28 @@ const ToggleButtonComponent = styled.button`
 `;
 
 const ToggleButton = (props: ToggleButtonProps) => {
-  const { name, propFunc } = props;
+  const { name, selected, propFunc } = props;
   return (
-    <ToggleButtonComponent onClick={() => propFunc(name)}>
+    <ToggleButtonComponent selected={selected} onClick={() => propFunc(name)}>
       {name}
     </ToggleButtonComponent>
   );
 };
 
 const Toggle = (props: ToggleProps) => {
-  const { buttons, propFunc } = props;
+  const { buttons, selected, propFunc } = props;
 
   const toggleButtonRender = () => {
     return buttons.map((item, i) => {
-      return <ToggleButton name={item} key={i} propFunc={propFunc} />;
+      console.log(`${item} ${selected}`);
+      return (
+        <ToggleButton
+          name={item}
+          selected={item === selected}
+          key={i}
+          propFunc={propFunc}
+        />
+      );
     });
   };
 
